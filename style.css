@@ -1,0 +1,125 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body and background */
+body {
+    background-color: #fefdf6; /* soft, light background */
+    color: #333; /* dark text for readability */
+    line-height: 1.6;
+}
+
+/* Header / Navigation */
+header {
+    background-color: #2e6b41; /* calm green for Islamic theme */
+    padding: 15px 0;
+    text-align: center;
+}
+
+header nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+header nav a:hover {
+    color: #ffd700; /* gold hover */
+}
+
+/* Main content */
+main {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 15px;
+}
+
+/* Headings */
+h1 {
+    font-size: 2em;
+    color: #2e6b41;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 1.5em;
+    color: #1f4b2f;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+/* Paragraphs */
+p {
+    margin-bottom: 15px;
+    font-size: 1em;
+}
+
+/* Lists */
+ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* Links */
+a {
+    color: #2e6b41;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #1f4b2f;
+}
+
+/* Footer */
+footer {
+    background-color: #2e6b41;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 30px;
+}
+footer a {
+    color: #fff;             /* makes links white, visible on green */
+    text-decoration: none;   /* removes underline */
+    margin: 0 8px;           /* spacing between links */
+    font-weight: bold;       /* optional, looks nicer */
+}
+
+footer a:hover {
+    color: #ffeb3b;          /* yellow on hover */
+    text-decoration: underline;
+}
+/* Responsive for mobile */
+@media (max-width: 600px) {
+    header nav a {
+        display: block;
+        margin: 10px 0;
+    }
+    main {
+        padding: 0 10px;
+    }
+}
+/* Smooth transitions for links */
+header nav a, footer a, a {
+    transition: color 0.3s ease;
+}
+
+/* Footer spacing tweak */
+footer {
+    margin-top: 40px; /* a little more separation from main content */
+}
+
+/* Slightly better mobile padding */
+@media (max-width: 600px) {
+    main {
+        padding: 0 15px; /* a bit more room for small screens */
+    }
+}
