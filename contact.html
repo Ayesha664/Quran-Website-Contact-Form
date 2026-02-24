@@ -3,91 +3,149 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact</title>
-
+<title>Contact Form</title>
 <style>
-body {
-    font-family: Arial, sans-serif;
-    background-color: #fefdf6;
-    color: #333;
-    padding: 40px;
+  body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #fceff9, #e0f7ff, #f0fff4);
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
+ #form-container {
+  background: linear-gradient(135deg, #fdf6ff, #eef9ff, #f3fff5);
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+  max-width: 400px;
+  width: 100%;
+}
 h2 {
-    color: #2e6b41;
-    margin-bottom: 20px;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  color: white;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 20px;
+  letter-spacing: 1px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-form {
-    max-width: 500px;
-}
-
-input, textarea {
+  input, textarea, select {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
-    background-color: #2e6b41;
-    color: white;
-    padding: 10px 20px;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+    font-size: 14px;
+    color: #2c3e50;
+  }
 
-button:hover {
-    background-color: #1f4b2f;
-}
+  /* Matching attractive colors for inputs */
+  input[name="name"] {
+    background-color: #ffe6f0;
+  }
 
-#thankYouMessage {
-    display: none;
-    margin-top: 20px;
-    color: green;
+  input[name="email"] {
+    background-color: #e6f7ff;
+  }
+
+  select {
+    background-color: #fff0e6;
+  }
+
+  textarea {
+    background-color: #e6ffe6;
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(45deg, #28a745, #1e7e34);
+    color: #fff;
+    font-size: 16px;
     font-weight: bold;
-}
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background: linear-gradient(45deg, #1e7e34, #28a745);
+  }
+
+  #thank-you-message {
+    display: none;
+    background-color: #d4edda;
+    color: #155724;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 15px;
+    text-align: center;
+    font-weight: 500;
+    border: 1px solid #c3e6cb;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 </style>
 </head>
 <body>
 
-<h2>Contact Us</h2>
-
-<form id="contactForm" action="https://formspree.io/f/mlgwoovk" method="POST">
+<div id="form-container">
+  <h2>Contact Quran Teacher</h2>
+  <form id="contact-form" action="https://formspree.io/f/mlgwoovk" method="POST">
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="email" name="email" placeholder="Your Email" required>
-    <textarea name="message" placeholder="Your Message" required></textarea>
-    <button type="submit">Send</button>
-</form>
+    
+    <select id="user-type" required>
+      <option value="">Select Category</option>
+      <option value="female">Female</option>
+      <option value="kids">Kids</option>
+    </select>
 
-<div id="thankYouMessage">
-    Thank you! Your message has been sent.
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</div>
+
+<div id="thank-you-message">
+  Thank you, your message has been sent.
 </div>
 
 <script>
-document.getElementById("contactForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+document.getElementById("contact-form").addEventListener("submit", function(event) {
+    const userType = document.getElementById("user-type").value;
+    if (userType !== "female" && userType !== "kids") {
+        alert("Only Female and Kids are allowed to submit this form.");
+        event.preventDefault();
+        return;
+    }
 
-    const form = this;
-    const formData = new FormData(form);
+    event.preventDefault();
 
-    fetch(form.action, {
-        method: "POST",
+    const formData = new FormData(this);
+    fetch(this.action, {
+        method: this.method,
         body: formData,
-        headers: { "Accept": "application/json" }
-    })
-    .then(function(response) {
+        headers: { 'Accept': 'application/json' }
+    }).then(response => {
         if (response.ok) {
-            form.reset();
-            document.getElementById("thankYouMessage").style.display = "block";
+            document.getElementById("form-container").style.display = "none";
+            document.getElementById("thank-you-message").style.display = "block";
         } else {
-            alert("There was a problem sending your message.");
+            alert("Oops! There was a problem submitting your form.");
         }
-    })
-    .catch(function() {
-        alert("There was a problem sending your message.");
+    }).catch(error => {
+        alert("Oops! There was a problem submitting your form.");
     });
 });
 </script>
