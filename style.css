@@ -123,3 +123,24 @@ footer {
         padding: 0 15px; /* a bit more room for small screens */
     }
 }
+.project-card{
+  background:white;
+  padding:20px;
+  margin:20px 0;
+  border-radius:8px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.project-card h3{
+  margin-top:0;
+}
+
+.project-card a{
+  text-decoration:none;
+  color:#3498db;
+  font-weight:bold;
+}
+
+.project-card a:hover{
+  text-decoration:underline;
+}
